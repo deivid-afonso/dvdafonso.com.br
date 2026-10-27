@@ -17,7 +17,7 @@ Site pessoal de Deivid Afonso, desenvolvido como uma página estática responsiv
 
 O GitHub funciona como repositório e histórico do projeto. A execução do PHP acontece na Hostinger, não no GitHub Pages.
 
-A interface usa tema escuro como padrão e oferece alternância para tema claro, alto contraste e texto ampliado. As preferências de acessibilidade ficam salvas no navegador e podem ser usadas junto com a navegação por teclado.
+A interface usa tema escuro como padrão e oferece alternância para tema claro e controles para aumentar ou diminuir o tamanho do texto. As preferências de acessibilidade ficam salvas no navegador e podem ser usadas junto com a navegação por teclado.
 
 ## CI/CD e segurança
 

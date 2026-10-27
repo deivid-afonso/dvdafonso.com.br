@@ -104,6 +104,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size: 13px;
 }
 .accessibility-button:hover, .accessibility-button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.accessibility-button:disabled { cursor: not-allowed; opacity: .4; }
 .menu-toggle { display: none; background: none; border: 0; }
 .hero {
   min-height: 670px;
@@ -195,8 +196,8 @@ h2 { font-size: clamp(36px, 4vw, 58px); margin-bottom: 0; }
 .form-trap { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 .form-status { min-height: 20px; margin: 2px 0 0; color: var(--accent) !important; font-size: 12px !important; }
 .form-status.success { color: var(--secondary) !important; }
-.high-contrast { --bg: #000; --surface: #111; --surface-strong: #000; --text: #fff; --muted: #fff; --line: #fff; --accent: #ffea00; --accent-strong: #ffea00; --secondary: #00ffff; --focus: #fff; }
-.large-text { font-size: 112.5%; }
+:root[data-font-scale="large"] .hero-text, :root[data-font-scale="large"] .section-content p:not(.lead), :root[data-font-scale="large"] .timeline p, :root[data-font-scale="large"] .note-card p, :root[data-font-scale="large"] .project-info p { font-size: 16px; }
+:root[data-font-scale="small"] .hero-text, :root[data-font-scale="small"] .section-content p:not(.lead), :root[data-font-scale="small"] .timeline p, :root[data-font-scale="small"] .note-card p, :root[data-font-scale="small"] .project-info p { font-size: 14px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 @media (max-width: 900px) { .site-header { flex-wrap: wrap; } .site-nav { order: 3; width: 100%; justify-content: flex-end; } .accessibility-tools { margin-left: auto; } }
 @media (max-width: 760px) {

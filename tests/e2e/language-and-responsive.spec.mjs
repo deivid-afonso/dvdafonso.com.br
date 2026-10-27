@@ -26,22 +26,22 @@ test("mobile navigation opens and exposes the contact route", async ({ page }) =
   await page.getByRole("link", { name: "Contato" }).click();
   await expect(page.locator("#contato")).toBeInViewport();
 });
-test("accessibility controls switch theme, contrast and text size", async ({ page }) => {
+test("accessibility controls switch theme and text size", async ({ page }) => {
   await page.goto("/");
 
   const themeButton = page.locator("[data-action='theme']");
-  const contrastButton = page.locator("[data-action='contrast']");
-  const fontButton = page.locator("[data-action='font']");
+  const decreaseButton = page.locator("[data-action='font-decrease']");
+  const increaseButton = page.locator("[data-action='font-increase']");
 
   await themeButton.click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await expect(themeButton).toHaveAttribute("aria-pressed", "true");
 
-  await contrastButton.click();
-  await expect(page.locator("html")).toHaveClass(/high-contrast/);
-  await expect(contrastButton).toHaveAttribute("aria-pressed", "true");
+  await increaseButton.click();
+  await expect(page.locator("html")).toHaveAttribute("data-font-scale", "large");
+  await expect(increaseButton).toBeEnabled();
 
-  await fontButton.click();
-  await expect(page.locator("html")).toHaveClass(/large-text/);
-  await expect(fontButton).toHaveAttribute("aria-pressed", "true");
+  await decreaseButton.click();
+  await expect(page.locator("html")).toHaveAttribute("data-font-scale", "normal");
+  await expect(decreaseButton).toBeEnabled();
 });
