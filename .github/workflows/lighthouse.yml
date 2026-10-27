@@ -1,0 +1,37 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Chrome
+        run: npx --yes playwright install --with-deps chromium
+
+      - name: Start local server
+        run: npx --yes http-server . -p 8080 -s &
+
+      - name: Run Lighthouse
+        run: |
+          npm install -g @lhci/cli@0.14.0
+          lhci autorun --collect.url=http://localhost:8080 \
+            --assert.assertions.categories:performance=off \
+            --assert.assertions.categories:accessibility="error; minScore=0.9" \
+            --assert.assertions.categories:best-practices="warn; minScore=0.9" \
+            --assert.assertions.categories:seo="warn; minScore=0.9"

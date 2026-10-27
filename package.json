@@ -1,0 +1,29 @@
+{
+  "name": "dvdafonso",
+  "version": "1.0.0",
+  "description": "Site pessoal de Deivid Afonso, desenvolvido como uma página estática responsiva, com identidade editorial em papel, grafite e terracota. Além do portfólio, a página inclui uma área de notas de bancada para publicar aprendizados curtos sobre arquitetura, performance e IA.",
+  "private": true,
+  "main": "script.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npm run test:e2e",
+    "test:e2e": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deivid-afonso/dvdafonso.com.br.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/deivid-afonso/dvdafonso.com.br/issues"
+  },
+  "homepage": "https://github.com/deivid-afonso/dvdafonso.com.br#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  }
+}

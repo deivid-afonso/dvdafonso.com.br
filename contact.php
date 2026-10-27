@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+session_start();
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -14,6 +15,29 @@ if (!empty($_POST['website'] ?? '')) {
     echo json_encode(['message' => 'Solicitação inválida.']);
     exit;
 }
+
+// CSRF validation
+$token = $_POST['csrf_token'] ?? '';
+if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
+    http_response_code(403);
+    echo json_encode(['message' => 'Token de segurança inválido. Recarregue a página.']);
+    exit;
+}
+
+// Rate limiting: max 3 submissions per 10 minutes per session
+$now = time();
+$window = 600;
+$maxAttempts = 3;
+$_SESSION['contact_times'] = array_filter(
+    $_SESSION['contact_times'] ?? [],
+    fn(int $t) => $t > $now - $window
+);
+if (count($_SESSION['contact_times']) >= $maxAttempts) {
+    http_response_code(429);
+    echo json_encode(['message' => 'Muitas tentativas. Aguarde alguns minutos.']);
+    exit;
+}
+$_SESSION['contact_times'][] = $now;
 
 $name = trim((string) ($_POST['name'] ?? ''));
 $email = trim((string) ($_POST['email'] ?? ''));
@@ -50,4 +74,10 @@ $replyHeaders = [
 ];
 mail($safeEmail, $replySubject, $reply, implode("\r\n", $replyHeaders));
 
-echo json_encode(['message' => 'Mensagem enviada com sucesso.']);
+// Rotate CSRF token after successful submission
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+
+echo json_encode([
+    'message' => 'Mensagem enviada com sucesso.',
+    'csrf_token' => $_SESSION['csrf_token']
+]);
