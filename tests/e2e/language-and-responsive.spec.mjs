@@ -26,7 +26,6 @@ test("mobile navigation opens and exposes the contact route", async ({ page }) =
   await page.getByRole("link", { name: "Contato" }).click();
   await expect(page.locator("#contato")).toBeInViewport();
 });
-
 test("accessibility controls switch theme, contrast and text size", async ({ page }) => {
   await page.goto("/");
 
