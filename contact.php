@@ -50,17 +50,14 @@ if ($name === '' || mb_strlen($name) > 120 || !filter_var($email, FILTER_VALIDAT
     exit;
 }
 
+require_once __DIR__ . '/smtp.php';
+
 $safeName = str_replace(["\r", "\n"], ' ', $name);
 $safeEmail = str_replace(["\r", "\n"], '', $email);
 $subject = 'Novo contato pelo site - ' . $safeName;
 $body = "Nome: {$safeName}\nE-mail: {$safeEmail}\n\nMensagem:\n{$message}";
-$headers = [
-    'From: site@dvdafonso.com.br',
-    'Reply-To: ' . $safeEmail,
-    'Content-Type: text/plain; charset=UTF-8'
-];
 
-$sentToOwner = mail('contato@dvdafonso.com.br', $subject, $body, implode("\r\n", $headers));
+$sentToOwner = smtp_send('contato@dvdafonso.com.br', $subject, $body, 'contato@dvdafonso.com.br', 'Site dvdafonso.com.br', $safeEmail);
 if (!$sentToOwner) {
     http_response_code(500);
     echo json_encode(['message' => 'O servidor não conseguiu enviar a mensagem.']);
@@ -69,11 +66,7 @@ if (!$sentToOwner) {
 
 $replySubject = 'Recebi sua mensagem — Deivid Afonso';
 $reply = "Olá, {$safeName}!\n\nObrigado por escrever pelo meu site. Recebi sua mensagem e vou analisá-la com atenção. Retornarei assim que possível pelo e-mail informado.\n\nEnquanto isso, você também pode me encontrar no LinkedIn:\nhttps://www.linkedin.com/in/deivid-da-silva-afonso-dev/\n\nAbraços,\nDeivid Afonso\nEngenheiro Backend Sênior";
-$replyHeaders = [
-    'From: Deivid Afonso <contato@dvdafonso.com.br>',
-    'Content-Type: text/plain; charset=UTF-8'
-];
-mail($safeEmail, $replySubject, $reply, implode("\r\n", $replyHeaders));
+smtp_send($safeEmail, $replySubject, $reply, 'contato@dvdafonso.com.br', 'Deivid Afonso');
 
 // Rotate CSRF token after successful submission
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
