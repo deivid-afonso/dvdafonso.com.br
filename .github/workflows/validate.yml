@@ -32,7 +32,7 @@ jobs:
         run: php -l contact.php
 
       - name: Validate HTML structure
-        run: npx --yes html-validate@9.4.0 index.html
+        run: npx --yes html-validate@9.4.0 --config .htmlvalidate.json index.html
 
       - name: Check for accidental secrets
         uses: gitleaks/gitleaks-action@v2
