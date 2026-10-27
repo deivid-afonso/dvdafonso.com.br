@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+session_set_cookie_params(['samesite' => 'Strict', 'httponly' => true, 'secure' => true]);
 session_start();
 header('Content-Type: application/json; charset=utf-8');
 

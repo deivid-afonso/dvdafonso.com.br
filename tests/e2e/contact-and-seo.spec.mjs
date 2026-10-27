@@ -3,6 +3,7 @@ import { test, expect } from "@playwright/test";
 test("contact form validates required data and preserves contact options", async ({ page }) => {
   await page.goto("/");
   await page.locator("#contato").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
 
   const form = page.locator("#contact-form");
   await form.locator("button[type='submit']").click();
