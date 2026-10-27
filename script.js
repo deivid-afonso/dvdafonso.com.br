@@ -41,11 +41,10 @@ menuToggle.addEventListener("click", () => {
 document.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("is-open")));
 
 const themeButton = document.querySelector("[data-action='theme']");
-const contrastButton = document.querySelector("[data-action='contrast']");
-const fontButton = document.querySelector("[data-action='font']");
+const fontDecreaseButton = document.querySelector("[data-action='font-decrease']");
+const fontIncreaseButton = document.querySelector("[data-action='font-increase']");
 const savedTheme = localStorage.getItem("theme");
-const savedContrast = localStorage.getItem("contrast") === "true";
-const savedLargeText = localStorage.getItem("largeText") === "true";
+const savedFontScale = Number(localStorage.getItem("fontScale") || "1");
 
 const updateAccessibilityButton = (button, active, activeLabel, inactiveLabel) => {
   button.setAttribute("aria-pressed", String(active));
@@ -58,24 +57,21 @@ const setTheme = (light) => {
   updateAccessibilityButton(themeButton, light, "Ativar tema escuro", "Ativar tema claro");
 };
 
-const setContrast = (active) => {
-  document.documentElement.classList.toggle("high-contrast", active);
-  localStorage.setItem("contrast", String(active));
-  updateAccessibilityButton(contrastButton, active, "Desativar alto contraste", "Ativar alto contraste");
-};
-
-const setLargeText = (active) => {
-  document.documentElement.classList.toggle("large-text", active);
-  localStorage.setItem("largeText", String(active));
-  updateAccessibilityButton(fontButton, active, "Restaurar tamanho do texto", "Aumentar tamanho do texto");
+const setFontScale = (scale) => {
+  const boundedScale = Math.min(1.2, Math.max(0.9, scale));
+  const scaleName = boundedScale > 1 ? "large" : boundedScale < 1 ? "small" : "normal";
+  document.documentElement.dataset.fontScale = scaleName;
+  document.documentElement.style.setProperty("--font-scale", String(boundedScale));
+  localStorage.setItem("fontScale", String(boundedScale));
+  fontDecreaseButton.disabled = boundedScale <= 0.9;
+  fontIncreaseButton.disabled = boundedScale >= 1.2;
 };
 
 setTheme(savedTheme ? savedTheme === "light" : false);
-setContrast(savedContrast);
-setLargeText(savedLargeText);
+setFontScale(Number.isFinite(savedFontScale) ? savedFontScale : 1);
 themeButton.addEventListener("click", () => setTheme(document.documentElement.dataset.theme !== "light"));
-contrastButton.addEventListener("click", () => setContrast(!document.documentElement.classList.contains("high-contrast")));
-fontButton.addEventListener("click", () => setLargeText(!document.documentElement.classList.contains("large-text")));
+fontDecreaseButton.addEventListener("click", () => setFontScale(Number(document.documentElement.style.getPropertyValue("--font-scale")) - 0.1));
+fontIncreaseButton.addEventListener("click", () => setFontScale(Number(document.documentElement.style.getPropertyValue("--font-scale")) + 0.1));
 
 document.querySelector("#contact-form").addEventListener("submit", (event) => {
   event.preventDefault();
