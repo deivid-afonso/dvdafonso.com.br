@@ -62,3 +62,4 @@ jobs:
             **/package-lock.json
             **/playwright.config.*
             **/.htmlvalidate.json
+            **/smtp-config.php

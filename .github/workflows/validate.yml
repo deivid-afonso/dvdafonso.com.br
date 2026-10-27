@@ -33,6 +33,7 @@ jobs:
           test -f fonts/dm-sans-latin.woff2
           test -f fonts/space-grotesk-latin.woff2
           test -f og-image.png
+          test -f smtp.php
 
       - name: Validate JavaScript syntax
         run: node --check script.js
@@ -41,6 +42,7 @@ jobs:
         run: |
           php -l contact.php
           php -l csrf-token.php
+          php -l smtp.php
 
       - name: Install browser test dependencies
         run: npm ci && npx playwright install --with-deps chromium
