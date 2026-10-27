@@ -37,9 +37,11 @@ test("accessibility controls switch theme and text size", async ({ page }) => {
   await expect(themeButton.locator(".icon")).toHaveCount(2);
   await expect(decreaseButton.locator(".icon")).toBeVisible();
   await expect(increaseButton.locator(".icon")).toBeVisible();
+  const initialTheme = await page.locator("html").getAttribute("data-theme");
   await themeButton.click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await expect(themeButton).toHaveAttribute("aria-pressed", "true");
+  const toggledTheme = initialTheme === "dark" ? "light" : "dark";
+  await expect(page.locator("html")).toHaveAttribute("data-theme", toggledTheme);
+  await expect(themeButton).toHaveAttribute("aria-pressed", String(toggledTheme === "light"));
 
   await increaseButton.click();
   await expect(page.locator("html")).toHaveAttribute("data-font-scale", "large");

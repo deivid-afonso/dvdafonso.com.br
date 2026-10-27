@@ -24,6 +24,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Minify CSS and JS
+        run: |
+          npx --yes csso-cli@4.0.2 styles.css -o styles.css
+          npx --yes terser@5.31.0 script.js -o script.js --compress --mangle
+
+      - name: Update sitemap lastmod
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          sed -i "s|<lastmod>[^<]*</lastmod>|<lastmod>${DATE}</lastmod>|" sitemap.xml
+
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -39,3 +54,11 @@ jobs:
             **/.git*/**
             **/.github/**
             **/README.md
+            **/HISTORICO-PROJETO.md
+            **/node_modules/**
+            **/tests/**
+            **/playwright-report/**
+            **/package.json
+            **/package-lock.json
+            **/playwright.config.*
+            **/.htmlvalidate.json

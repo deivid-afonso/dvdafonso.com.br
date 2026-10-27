@@ -24,14 +24,23 @@ jobs:
           test -f styles.css
           test -f script.js
           test -f contact.php
+          test -f csrf-token.php
+          test -f favicon.svg
           test -f robots.txt
           test -f sitemap.xml
+          test -f .htaccess
+          test -d fonts
+          test -f fonts/dm-sans-latin.woff2
+          test -f fonts/space-grotesk-latin.woff2
+          test -f og-image.png
 
       - name: Validate JavaScript syntax
         run: node --check script.js
 
       - name: Validate PHP syntax
-        run: php -l contact.php
+        run: |
+          php -l contact.php
+          php -l csrf-token.php
 
       - name: Install browser test dependencies
         run: npm ci && npx playwright install --with-deps chromium

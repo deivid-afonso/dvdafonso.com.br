@@ -2,6 +2,8 @@
 
 Site pessoal de Deivid Afonso, desenvolvido como uma página estática responsiva, com identidade editorial em papel, grafite e terracota. Além do portfólio, a página inclui uma área de notas de bancada para publicar aprendizados curtos sobre arquitetura, performance e IA.
 
+O histórico consolidado de decisões, implementações, validações e próximos passos está em [HISTORICO-PROJETO.md](./HISTORICO-PROJETO.md).
+
 ## Estrutura
 
 ```text

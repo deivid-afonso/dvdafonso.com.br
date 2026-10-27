@@ -14,6 +14,11 @@ const translations = {
   }
 };
 
+const KEYS_WITH_HTML = new Set([
+  "hero.title", "about.title", "projects.title", "notes.title",
+  "experience.title", "contact.title"
+]);
+
 const languageButton = document.querySelector(".language-switch");
 let english = false;
 document.querySelectorAll("[data-i18n]").forEach((element) => {
@@ -25,20 +30,51 @@ languageButton.addEventListener("click", () => {
   languageButton.textContent = english ? "PT" : "EN";
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
-    if (english && translations.en[key]) element.innerHTML = translations.en[key];
-    else element.innerHTML = element.dataset.original;
+    const value = english ? translations.en[key] : null;
+    const content = value || element.dataset.original;
+    if (KEYS_WITH_HTML.has(key)) {
+      element.innerHTML = content;
+    } else {
+      element.textContent = content;
+    }
   });
   document.title = english ? "Deivid Afonso | Technology, projects and ideas" : "Deivid Afonso | Tecnologia, projetos e ideias";
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
+
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
+const menuLabel = (open) => open ? "Fechar menu" : "Abrir menu";
+
 menuToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
   menuToggle.setAttribute("aria-expanded", isOpen);
+  menuToggle.setAttribute("aria-label", menuLabel(isOpen));
 });
-document.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("is-open")));
+
+document.addEventListener("click", (e) => {
+  if (nav.classList.contains("is-open") && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+    nav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", menuLabel(false));
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && nav.classList.contains("is-open")) {
+    nav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", menuLabel(false));
+    menuToggle.focus();
+  }
+});
+
+document.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener("click", () => {
+  nav.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", menuLabel(false));
+}));
 
 const themeButton = document.querySelector("[data-action='theme']");
 const fontDecreaseButton = document.querySelector("[data-action='font-decrease']");
@@ -68,11 +104,25 @@ const setFontScale = (scale) => {
   fontIncreaseButton.disabled = boundedScale >= 1.2;
 };
 
-setTheme(savedTheme ? savedTheme === "light" : false);
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+if (savedTheme) {
+  setTheme(savedTheme === "light");
+} else {
+  setTheme(!prefersDark.matches);
+}
+prefersDark.addEventListener("change", (e) => {
+  if (!localStorage.getItem("theme")) setTheme(!e.matches);
+});
+
 setFontScale(Number.isFinite(savedFontScale) ? savedFontScale : 1);
 themeButton.addEventListener("click", () => setTheme(document.documentElement.dataset.theme !== "light"));
 fontDecreaseButton.addEventListener("click", () => setFontScale(Number(document.documentElement.style.getPropertyValue("--font-scale")) - 0.1));
 fontIncreaseButton.addEventListener("click", () => setFontScale(Number(document.documentElement.style.getPropertyValue("--font-scale")) + 0.1));
+
+fetch("csrf-token.php", { credentials: "same-origin" })
+  .then((r) => r.json())
+  .then((d) => { document.querySelector("#csrf_token").value = d.csrf_token; })
+  .catch(() => {});
 
 document.querySelector("#contact-form").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -88,6 +138,7 @@ document.querySelector("#contact-form").addEventListener("submit", (event) => {
     .then(({ ok, data }) => {
       if (!ok) throw new Error(data.message || "contact_failed");
       form.reset();
+      if (data.csrf_token) document.querySelector("#csrf_token").value = data.csrf_token;
       status.className = "form-status success";
       status.textContent = english ? "Message sent. I will get back to you soon." : "Mensagem enviada. Responderei em breve.";
     })
@@ -97,3 +148,32 @@ document.querySelector("#contact-form").addEventListener("submit", (event) => {
     })
     .finally(() => { submit.disabled = false; });
 });
+
+const navLinks = document.querySelectorAll(".site-nav a[href^='#']");
+const sections = document.querySelectorAll("section[id]");
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+      });
+    }
+  });
+}, { rootMargin: "-20% 0px -60% 0px" });
+
+sections.forEach((section) => sectionObserver.observe(section));
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+}
