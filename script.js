@@ -40,6 +40,43 @@ menuToggle.addEventListener("click", () => {
 });
 document.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("is-open")));
 
+const themeButton = document.querySelector("[data-action='theme']");
+const contrastButton = document.querySelector("[data-action='contrast']");
+const fontButton = document.querySelector("[data-action='font']");
+const savedTheme = localStorage.getItem("theme");
+const savedContrast = localStorage.getItem("contrast") === "true";
+const savedLargeText = localStorage.getItem("largeText") === "true";
+
+const updateAccessibilityButton = (button, active, activeLabel, inactiveLabel) => {
+  button.setAttribute("aria-pressed", String(active));
+  button.setAttribute("aria-label", active ? activeLabel : inactiveLabel);
+};
+
+const setTheme = (light) => {
+  document.documentElement.dataset.theme = light ? "light" : "dark";
+  localStorage.setItem("theme", light ? "light" : "dark");
+  updateAccessibilityButton(themeButton, light, "Ativar tema escuro", "Ativar tema claro");
+};
+
+const setContrast = (active) => {
+  document.documentElement.classList.toggle("high-contrast", active);
+  localStorage.setItem("contrast", String(active));
+  updateAccessibilityButton(contrastButton, active, "Desativar alto contraste", "Ativar alto contraste");
+};
+
+const setLargeText = (active) => {
+  document.documentElement.classList.toggle("large-text", active);
+  localStorage.setItem("largeText", String(active));
+  updateAccessibilityButton(fontButton, active, "Restaurar tamanho do texto", "Aumentar tamanho do texto");
+};
+
+setTheme(savedTheme ? savedTheme === "light" : false);
+setContrast(savedContrast);
+setLargeText(savedLargeText);
+themeButton.addEventListener("click", () => setTheme(document.documentElement.dataset.theme !== "light"));
+contrastButton.addEventListener("click", () => setContrast(!document.documentElement.classList.contains("high-contrast")));
+fontButton.addEventListener("click", () => setLargeText(!document.documentElement.classList.contains("large-text")));
+
 document.querySelector("#contact-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const form = event.currentTarget;
