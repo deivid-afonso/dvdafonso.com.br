@@ -241,6 +241,16 @@ h2 { font-size: clamp(36px, 4vw, 58px); margin-bottom: 0; }
 .skill-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-cloud span { border: 1px solid var(--line); padding: 10px 16px; color: var(--muted); font: 500 13px var(--display); transition: border-color .2s ease, color .2s ease; }
 .skill-cloud span:hover { border-color: var(--accent); color: var(--accent); }
+.testimonials { padding-top: 90px; padding-bottom: 110px; border-top: 1px solid var(--line); }
+.testimonials .section-heading { margin-bottom: 40px; }
+.testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.testimonial-card { margin: 0; padding: 30px; background: var(--surface); border: 1px solid var(--line); }
+.testimonial-card p { color: var(--muted); font-size: 15px; line-height: 1.6; font-style: italic; margin: 0 0 16px; }
+.testimonial-card footer strong { color: var(--text); font-size: 13px; font-style: normal; }
+.testimonials-cta { margin-top: 24px; }
+.testimonials-cta a { color: var(--secondary); font-size: 13px; text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--secondary) 50%, transparent); padding-bottom: 4px; }
+a.note-card { text-decoration: none; color: inherit; }
+a.note-card:hover { border-color: var(--accent); }
 .contact { padding-top: 0; padding-bottom: 90px; }
 .contact-card { background: var(--surface-strong); padding: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border: 1px solid var(--line); }
 .contact-card h2 { margin-bottom: 20px; }
@@ -291,6 +301,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); margin-bottom: 0; }
   .section-aside { text-align: left; margin-top: 18px; }
   .note-card { min-height: 240px; }
   .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
   .contact-card { padding: 30px 22px; grid-template-columns: 1fr; }
   .site-footer { display: grid; gap: 10px; }
 }

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Como substituí retries síncronos por RabbitMQ com dead-letter, reduzindo o tempo de resposta de 12s para 200ms e tornando falhas rastreáveis." />
+    <meta name="author" content="Deivid Afonso" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://dvdafonso.com.br/notas/fila-resolve-mais-que-retry.html" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Quando uma fila resolve mais do que um retry — Deivid Afonso" />
+    <meta property="og:description" content="Retry síncrono com timeout crescente falhava 3x/dia. RabbitMQ + dead-letter: processamento assíncrono, falhas rastreáveis, API de 12s para 200ms." />
+    <meta property="og:url" content="https://dvdafonso.com.br/notas/fila-resolve-mais-que-retry.html" />
+    <meta property="og:image" content="https://dvdafonso.com.br/og-image.png" />
+    <title>Quando uma fila resolve mais do que um retry — Deivid Afonso</title>
+    <link rel="preload" href="../fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=10" />
+    <link rel="stylesheet" href="note.css?v=1" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Quando uma fila resolve mais do que um retry",
+        "author": { "@type": "Person", "name": "Deivid Afonso", "url": "https://dvdafonso.com.br/" },
+        "datePublished": "2025-10-01",
+        "description": "Como substituí retries síncronos por RabbitMQ com dead-letter, reduzindo o tempo de resposta de 12s para 200ms.",
+        "mainEntityOfPage": "https://dvdafonso.com.br/notas/fila-resolve-mais-que-retry.html"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="note-header section-shell">
+      <a href="../#notas" class="back-link">← Voltar às notas</a>
+    </header>
+    <article class="note-article section-shell">
+      <p class="note-meta">ARQUITETURA · Publicado em out/2025</p>
+      <h1>Quando uma fila resolve mais do que um retry</h1>
+
+      <p class="lead">Uma integração falhava 3 vezes por dia num sistema que tentava retry síncrono com timeout crescente. A solução não era tentar mais — era desacoplar.</p>
+
+      <h2>O problema</h2>
+      <p>O sistema chamava uma API externa de forma síncrona durante o processamento de pedidos. Quando essa API demorava ou falhava, o retry aumentava o timeout: 5s, 10s, 30s. A API do nosso sistema ficava travada esperando, e o tempo de resposta subia para 12 segundos no pior caso. Três falhas diárias significavam impacto direto na operação.</p>
+
+      <h2>O diagnóstico</h2>
+      <p>O retry síncrono criava dois problemas: o chamador ficava bloqueado esperando, e a falha era silenciosa — quando o timeout estourava, só tínhamos um log genérico "timeout exception". Não havia como saber se a falha era temporária, se o payload era inválido, ou se a API externa estava fora.</p>
+
+      <h2>A solução: RabbitMQ + dead-letter</h2>
+      <p>Troquei a chamada síncrona por uma publicação em fila. O fluxo ficou:</p>
+      <ol>
+        <li>O endpoint recebe o pedido e publica na fila principal — responde em ~200ms</li>
+        <li>Um consumer processa a mensagem e chama a API externa</li>
+        <li>Se falha, a mensagem vai para a dead-letter queue com metadados (tentativa, erro, timestamp)</li>
+        <li>Um segundo consumer reprocessa a dead-letter com backoff exponencial</li>
+      </ol>
+
+      <h2>O resultado</h2>
+      <p>Tempo de resposta da API caiu de 12s para 200ms. As falhas deixaram de ser invisíveis — cada mensagem na dead-letter tinha contexto completo. O time de operações passou a monitorar a fila e agir antes de virar incidente.</p>
+
+      <h2>O aprendizado</h2>
+      <p>Nem todo problema de integração precisa de mais tentativas. Às vezes o que falta é desacoplamento: deixar o chamador seguir em frente e tratar a falha de forma assíncrona, com contexto suficiente para agir. A fila não é overhead — é a separação correta de responsabilidades.</p>
+    </article>
+    <footer class="note-footer section-shell">
+      <a href="../#notas">← Todas as notas</a>
+      <a href="../#contato">Falar comigo ↗</a>
+    </footer>
+  </body>
+</html>

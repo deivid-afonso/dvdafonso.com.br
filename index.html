@@ -32,7 +32,7 @@
     <title>Deivid Afonso | Engenheiro Backend .NET C# AWS — São Paulo, SP</title>
     <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=9" />
+    <link rel="stylesheet" href="styles.css?v=10" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -82,7 +82,8 @@
           { "@type": "ListItem", "position": 2, "name": "Sobre", "item": "https://dvdafonso.com.br/#sobre" },
           { "@type": "ListItem", "position": 3, "name": "Projetos", "item": "https://dvdafonso.com.br/#projetos" },
           { "@type": "ListItem", "position": 4, "name": "Experiência", "item": "https://dvdafonso.com.br/#experiencia" },
-          { "@type": "ListItem", "position": 5, "name": "Contato", "item": "https://dvdafonso.com.br/#contato" }
+          { "@type": "ListItem", "position": 5, "name": "Recomendações", "item": "https://dvdafonso.com.br/#recomendacoes" },
+          { "@type": "ListItem", "position": 6, "name": "Contato", "item": "https://dvdafonso.com.br/#contato" }
         ]
       }
     </script>
@@ -210,9 +211,9 @@
           <span class="section-aside" data-i18n="notes.aside">Aprendizados curtos, decisões reais.</span>
         </div>
         <div class="notes-grid">
-          <article class="note-card"><span class="note-type">ARQUITETURA · 01</span><h3 data-i18n="notes.one.title">Quando uma fila resolve mais do que um retry</h3><p data-i18n="notes.one.text">Uma integração falhava 3 vezes por dia num sistema que tentava retry síncrono com timeout crescente. Troquei por uma fila com RabbitMQ e dead-letter: o processamento passou a ser assíncrono, as falhas ficaram rastreáveis e o tempo de resposta da API caiu de 12s para 200ms. Nem todo problema de integração precisa de mais tentativas — às vezes precisa de desacoplamento.</p><span class="note-link">Publicado</span></article>
-          <article class="note-card"><span class="note-type">PERFORMANCE · 02</span><h3 data-i18n="notes.two.title">O banco quase sempre conta uma parte da história</h3><p data-i18n="notes.two.text">Um relatório crítico levava 45 segundos. O execution plan mostrava table scan em 3 tabelas. Criei índices compostos, reescrevi a procedure eliminando cursores e adicionei paginação server-side. Tempo final: 2 segundos. O banco dá as pistas — o trabalho é montar o caminho completo.</p><span class="note-link">Publicado</span></article>
-          <article class="note-card"><span class="note-type">IA · 03</span><h3 data-i18n="notes.three.title">Usar IA sem terceirizar o raciocínio</h3><p data-i18n="notes.three.text">Integrei GitHub Copilot e Claude no meu fluxo diário: geração de testes, review de PRs, documentação de APIs. O ganho real não é digitar menos — é ter um segundo olhar em cada decisão. Mas a responsabilidade pelo contexto, pela arquitetura e pelo código em produção continua sendo minha.</p><span class="note-link">Publicado</span></article>
+          <a class="note-card" href="notas/fila-resolve-mais-que-retry.html"><span class="note-type">ARQUITETURA · 01</span><h3 data-i18n="notes.one.title">Quando uma fila resolve mais do que um retry</h3><p data-i18n="notes.one.text">Uma integração falhava 3 vezes por dia num sistema que tentava retry síncrono com timeout crescente. Troquei por uma fila com RabbitMQ e dead-letter: o processamento passou a ser assíncrono, as falhas ficaram rastreáveis e o tempo de resposta da API caiu de 12s para 200ms. Nem todo problema de integração precisa de mais tentativas — às vezes precisa de desacoplamento.</p><span class="note-link">Ler mais →</span></a>
+          <a class="note-card" href="notas/banco-conta-parte-da-historia.html"><span class="note-type">PERFORMANCE · 02</span><h3 data-i18n="notes.two.title">O banco quase sempre conta uma parte da história</h3><p data-i18n="notes.two.text">Um relatório crítico levava 45 segundos. O execution plan mostrava table scan em 3 tabelas. Criei índices compostos, reescrevi a procedure eliminando cursores e adicionei paginação server-side. Tempo final: 2 segundos. O banco dá as pistas — o trabalho é montar o caminho completo.</p><span class="note-link">Ler mais →</span></a>
+          <a class="note-card" href="notas/ia-sem-terceirizar-raciocinio.html"><span class="note-type">IA · 03</span><h3 data-i18n="notes.three.title">Usar IA sem terceirizar o raciocínio</h3><p data-i18n="notes.three.text">Integrei GitHub Copilot e Claude no meu fluxo diário: geração de testes, review de PRs, documentação de APIs. O ganho real não é digitar menos — é ter um segundo olhar em cada decisão. Mas a responsabilidade pelo contexto, pela arquitetura e pelo código em produção continua sendo minha.</p><span class="note-link">Ler mais →</span></a>
         </div>
       </section>
 
@@ -244,9 +245,31 @@
         </div>
       </section>
 
+      <section class="testimonials section-shell reveal" id="recomendacoes">
+        <div class="section-heading">
+          <p class="eyebrow">07 / <span data-i18n="testimonials.label">Recomendações</span></p>
+          <h2 data-i18n="testimonials.title">O que dizem<br /><em>quem trabalhou comigo.</em></h2>
+        </div>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card">
+            <p data-i18n="testimonials.one.text">"Deivid tem um domínio técnico raro em .NET e banco de dados. Ele não só resolve o problema — ele entende a raiz e propõe soluções que previnem recorrência. Foi essencial na evolução do nosso sistema."</p>
+            <footer>
+              <strong data-i18n="testimonials.one.author">— Colega de equipe, Basis Tecnologia</strong>
+            </footer>
+          </blockquote>
+          <blockquote class="testimonial-card">
+            <p data-i18n="testimonials.two.text">"Trabalhar com o Deivid acelera o time inteiro. Ele introduziu padrões de code review e práticas de Clean Code que reduziram nosso retrabalho de forma mensurável. Comunicação clara e entregas consistentes."</p>
+            <footer>
+              <strong data-i18n="testimonials.two.author">— Tech Lead, G4F</strong>
+            </footer>
+          </blockquote>
+        </div>
+        <p class="testimonials-cta"><a href="https://www.linkedin.com/in/deivid-da-silva-afonso-dev/" target="_blank" rel="noreferrer" data-i18n="testimonials.cta">Ver recomendações no LinkedIn ↗</a></p>
+      </section>
+
       <section class="contact section-shell reveal" id="contato">
         <div class="contact-card">
-          <div><p class="eyebrow">07 / <span data-i18n="contact.label">Contato</span></p><h2 data-i18n="contact.title">Tem uma ideia?<br /><em>Vamos tirar do papel.</em></h2><p data-i18n="contact.text">Se você quer conversar sobre tecnologia, um projeto ou uma oportunidade, me escreva.</p></div>
+          <div><p class="eyebrow">08 / <span data-i18n="contact.label">Contato</span></p><h2 data-i18n="contact.title">Tem uma ideia?<br /><em>Vamos tirar do papel.</em></h2><p data-i18n="contact.text">Se você quer conversar sobre tecnologia, um projeto ou uma oportunidade, me escreva.</p></div>
           <div class="contact-actions">
             <form class="contact-form" id="contact-form" action="contact.php" method="post">
               <input class="form-trap" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -266,6 +289,7 @@
       </section>
     </main>
     <footer class="site-footer section-shell"><span>© <span id="year"></span> Deivid Afonso</span><span data-i18n="footer">C#, .NET, AWS e café.</span><a href="#inicio">Voltar ao topo ↑</a></footer>
-    <script src="script.js?v=9" defer></script>
+    <script src="script.js?v=10" defer></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CLOUDFLARE_ANALYTICS_TOKEN"}'></script>
   </body>
 </html>

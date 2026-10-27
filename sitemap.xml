@@ -27,7 +27,30 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://dvdafonso.com.br/#recomendacoes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dvdafonso.com.br/#contato</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dvdafonso.com.br/notas/fila-resolve-mais-que-retry.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dvdafonso.com.br/notas/banco-conta-parte-da-historia.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dvdafonso.com.br/notas/ia-sem-terceirizar-raciocinio.html</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Como integrei GitHub Copilot e Claude no fluxo de desenvolvimento: geração de testes, review de PRs e documentação, sem terceirizar decisões de arquitetura." />
+    <meta name="author" content="Deivid Afonso" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://dvdafonso.com.br/notas/ia-sem-terceirizar-raciocinio.html" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Usar IA sem terceirizar o raciocínio — Deivid Afonso" />
+    <meta property="og:description" content="GitHub Copilot e Claude no fluxo diário: testes, reviews, documentação. O ganho real é o segundo olhar, não digitar menos." />
+    <meta property="og:url" content="https://dvdafonso.com.br/notas/ia-sem-terceirizar-raciocinio.html" />
+    <meta property="og:image" content="https://dvdafonso.com.br/og-image.png" />
+    <title>Usar IA sem terceirizar o raciocínio — Deivid Afonso</title>
+    <link rel="preload" href="../fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=10" />
+    <link rel="stylesheet" href="note.css?v=1" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Usar IA sem terceirizar o raciocínio",
+        "author": { "@type": "Person", "name": "Deivid Afonso", "url": "https://dvdafonso.com.br/" },
+        "datePublished": "2025-10-01",
+        "description": "Como integrei GitHub Copilot e Claude no fluxo de desenvolvimento sem abrir mão das decisões de arquitetura.",
+        "mainEntityOfPage": "https://dvdafonso.com.br/notas/ia-sem-terceirizar-raciocinio.html"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="note-header section-shell">
+      <a href="../#notas" class="back-link">← Voltar às notas</a>
+    </header>
+    <article class="note-article section-shell">
+      <p class="note-meta">IA · Publicado em out/2025</p>
+      <h1>Usar IA sem terceirizar o raciocínio</h1>
+
+      <p class="lead">Integrei GitHub Copilot e Claude no meu fluxo diário. O ganho real não é digitar menos — é ter um segundo olhar em cada decisão.</p>
+
+      <h2>O que mudou no meu fluxo</h2>
+      <p>Uso IA em três pontos específicos do ciclo de desenvolvimento:</p>
+      <ul>
+        <li><strong>Geração de testes</strong> — escrevo o caso de teste em linguagem natural e deixo a IA gerar o código. Reviso o output, ajusto edge cases e valido que os asserts fazem sentido no contexto do domínio.</li>
+        <li><strong>Review de PRs</strong> — peço uma análise do diff antes do meu review manual. Isso me ajuda a pegar inconsistências que eu perderia na leitura rápida: nomes de variáveis que não seguem o padrão, tratamentos de erro ausentes, edge cases não cobertos.</li>
+        <li><strong>Documentação de APIs</strong> — gero a primeira versão do OpenAPI spec a partir do código e depois ajusto descrições, exemplos e cenários de erro que a IA não tem contexto para acertar.</li>
+      </ul>
+
+      <h2>Onde a IA ajuda de verdade</h2>
+      <p>O valor está no trabalho mecânico que consome tempo sem consumir inteligência: scaffolding de testes, formatação de documentação, primeira passada de review. Libera tempo para o que importa: decisões de arquitetura, tradeoffs de performance, alinhamento com o time.</p>
+
+      <h2>Onde eu não delego</h2>
+      <p>Decisões de arquitetura, escolha de padrões, modelagem de domínio. A IA não tem contexto sobre o negócio, sobre as limitações do ambiente, sobre acordos internos do time. Ela sugere o que parece correto sintaticamente — mas "compila" não significa "faz sentido em produção".</p>
+
+      <h2>O aprendizado</h2>
+      <p>A responsabilidade pelo contexto, pela arquitetura e pelo código em produção continua sendo minha. A IA é uma ferramenta — como o IDE, como o profiler, como o debugger. Quem decide o que entra em produção sou eu. Mas ter um segundo olhar constante, que não cansa e não pula linhas, é uma vantagem real.</p>
+    </article>
+    <footer class="note-footer section-shell">
+      <a href="../#notas">← Todas as notas</a>
+      <a href="../#contato">Falar comigo ↗</a>
+    </footer>
+  </body>
+</html>
