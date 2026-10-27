@@ -26,3 +26,23 @@ test("mobile navigation opens and exposes the contact route", async ({ page }) =
   await page.getByRole("link", { name: "Contato" }).click();
   await expect(page.locator("#contato")).toBeInViewport();
 });
+
+test("accessibility controls switch theme, contrast and text size", async ({ page }) => {
+  await page.goto("/");
+
+  const themeButton = page.locator("[data-action='theme']");
+  const contrastButton = page.locator("[data-action='contrast']");
+  const fontButton = page.locator("[data-action='font']");
+
+  await themeButton.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(themeButton).toHaveAttribute("aria-pressed", "true");
+
+  await contrastButton.click();
+  await expect(page.locator("html")).toHaveClass(/high-contrast/);
+  await expect(contrastButton).toHaveAttribute("aria-pressed", "true");
+
+  await fontButton.click();
+  await expect(page.locator("html")).toHaveClass(/large-text/);
+  await expect(fontButton).toHaveAttribute("aria-pressed", "true");
+});

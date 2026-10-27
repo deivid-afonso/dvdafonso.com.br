@@ -17,6 +17,8 @@ Site pessoal de Deivid Afonso, desenvolvido como uma página estática responsiv
 
 O GitHub funciona como repositório e histórico do projeto. A execução do PHP acontece na Hostinger, não no GitHub Pages.
 
+A interface usa tema escuro como padrão e oferece alternância para tema claro, alto contraste e texto ampliado. As preferências de acessibilidade ficam salvas no navegador e podem ser usadas junto com a navegação por teclado.
+
 ## CI/CD e segurança
 
 Cada push ou pull request para `main` executa:
@@ -59,7 +61,7 @@ git commit -m "Describe the change"
 git push
 ```
 
-Após o push, envie os arquivos atualizados para `public_html` na Hostinger ou configure a implantação Git da Hostinger para este repositório. Nunca versionar senhas, tokens SMTP ou arquivos `.env`.
+Após o push, o GitHub Actions valida e publica automaticamente os arquivos na Hostinger via FTPS. Nunca versionar senhas, tokens SMTP ou arquivos `.env`.
 
 ## Desenvolvimento local
 
