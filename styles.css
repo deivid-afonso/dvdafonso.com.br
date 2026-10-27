@@ -235,8 +235,10 @@ h2 { font-size: clamp(36px, 4vw, 58px); margin-bottom: 0; }
 .timeline h3 { font-size: 22px; margin-bottom: 10px; }
 .timeline p { margin: 0; max-width: 470px; }
 .skills { padding-top: 90px; padding-bottom: 110px; border-top: 1px solid var(--line); }
-.skill-cloud { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.skill-cloud span { border: 1px solid var(--line); padding: 12px 18px; color: var(--muted); font: 500 14px var(--display); transition: border-color .2s ease, color .2s ease; }
+.skill-groups { display: grid; gap: 32px; margin-top: 30px; }
+.skill-group h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent-strong); margin-bottom: 14px; }
+.skill-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-cloud span { border: 1px solid var(--line); padding: 10px 16px; color: var(--muted); font: 500 13px var(--display); transition: border-color .2s ease, color .2s ease; }
 .skill-cloud span:hover { border-color: var(--accent); color: var(--accent); }
 .contact { padding-top: 0; padding-bottom: 90px; }
 .contact-card { background: var(--surface-strong); padding: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border: 1px solid var(--line); }

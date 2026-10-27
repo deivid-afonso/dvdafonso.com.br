@@ -159,7 +159,7 @@
             <a class="button button-ghost" href="cv-deivid-afonso.pdf" download data-i18n="hero.cv">Baixar CV <span>↓</span></a>
           </div>
           <div class="hero-meta">
-            <span>Diadema, SP</span><span class="meta-separator">•</span><span data-i18n="hero.meta">7+ anos construindo software</span>
+            <span>Diadema, SP — Grande São Paulo</span><span class="meta-separator">•</span><span data-i18n="hero.meta">7+ anos construindo software</span>
           </div>
         </div>
         <div class="hero-art" role="img" aria-label="Monograma DA">
@@ -192,14 +192,14 @@
           <a class="text-link" href="https://github.com/deivid-afonso?tab=repositories" target="_blank" rel="noreferrer" data-i18n="projects.all">Ver todos no GitHub ↗</a>
         </div>
         <div class="project-list">
-          <a class="project-card project-card-featured" href="https://github.com/deivid-afonso/ConsoleCore" target="_blank" rel="noreferrer">
-            <div class="project-number">01</div><div class="project-info"><span class="project-tag">C# / ASP.NET Core</span><h3>ConsoleCore</h3><p data-i18n="projects.console">Projeto full stack para explorar Web API, Angular e Entity Framework Core.</p></div><span class="project-arrow">↗</span>
+          <a class="project-card project-card-featured" href="https://github.com/deivid-afonso/TradeWebAPI" target="_blank" rel="noreferrer">
+            <div class="project-number">01</div><div class="project-info"><span class="project-tag">C# / ASP.NET Core / SQL Server</span><h3>TradeWebAPI</h3><p data-i18n="projects.trade">API REST com Repository Pattern, injeção de dependência e Entity Framework Core. Arquitetura em camadas com separação de Services, Repository e Controllers.</p></div><span class="project-arrow">↗</span>
           </a>
-          <a class="project-card" href="https://github.com/deivid-afonso/ProEventos" target="_blank" rel="noreferrer">
-            <div class="project-number">02</div><div class="project-info"><span class="project-tag">.NET / Full Stack</span><h3>ProEventos</h3><p data-i18n="projects.events">Aplicação full stack construída com ASP.NET Core para gestão de eventos.</p></div><span class="project-arrow">↗</span>
+          <a class="project-card" href="https://github.com/deivid-afonso/NutriMente" target="_blank" rel="noreferrer">
+            <div class="project-number">02</div><div class="project-info"><span class="project-tag">TypeScript / Next.js / Docker</span><h3>NutriMente</h3><p data-i18n="projects.nutrimente">Plataforma full stack containerizada com Docker, testes E2E com Playwright e deploy automatizado. Backend + frontend integrados em ambiente de produção real.</p></div><span class="project-arrow">↗</span>
           </a>
-          <a class="project-card" href="https://github.com/deivid-afonso/gitCourse" target="_blank" rel="noreferrer">
-            <div class="project-number">03</div><div class="project-info"><span class="project-tag">JavaScript / Educação</span><h3>gitCourse</h3><p data-i18n="projects.git">Um projeto dedicado a compartilhar conhecimento prático sobre Git.</p></div><span class="project-arrow">↗</span>
+          <a class="project-card" href="https://github.com/deivid-afonso/dvdafonso.com.br" target="_blank" rel="noreferrer">
+            <div class="project-number">03</div><div class="project-info"><span class="project-tag">HTML / CSS / JS / PHP</span><h3>dvdafonso.com.br</h3><p data-i18n="projects.portfolio">Este site: CI/CD com GitHub Actions, FTPS deploy, SMTP autenticado, CSRF protection, testes E2E, Lighthouse CI e Cloudflare CDN. Score 100 em acessibilidade.</p></div><span class="project-arrow">↗</span>
           </a>
         </div>
       </section>
@@ -211,24 +211,28 @@
         </div>
         <div class="notes-grid">
           <article class="note-card"><span class="note-type">ARQUITETURA · 01</span><h3 data-i18n="notes.one.title">Quando uma fila resolve mais do que um retry</h3><p data-i18n="notes.one.text">Uma integração falhava 3 vezes por dia num sistema que tentava retry síncrono com timeout crescente. Troquei por uma fila com RabbitMQ e dead-letter: o processamento passou a ser assíncrono, as falhas ficaram rastreáveis e o tempo de resposta da API caiu de 12s para 200ms. Nem todo problema de integração precisa de mais tentativas — às vezes precisa de desacoplamento.</p><span class="note-link">Publicado</span></article>
-          <article class="note-card"><span class="note-type">PERFORMANCE · 02</span><h3 data-i18n="notes.two.title">O banco quase sempre conta uma parte da história</h3><p data-i18n="notes.two.text">Queries, índices e logs são pistas. O trabalho é montar o caminho completo até o usuário sentir a diferença.</p><span class="note-link">Em breve <span>↗</span></span></article>
-          <article class="note-card"><span class="note-type">IA · 03</span><h3 data-i18n="notes.three.title">Usar IA sem terceirizar o raciocínio</h3><p data-i18n="notes.three.text">Copilotos aceleram o teclado. A responsabilidade pela decisão, pelo contexto e pelo código continua sendo nossa.</p><span class="note-link">Em breve <span>↗</span></span></article>
+          <article class="note-card"><span class="note-type">PERFORMANCE · 02</span><h3 data-i18n="notes.two.title">O banco quase sempre conta uma parte da história</h3><p data-i18n="notes.two.text">Um relatório crítico levava 45 segundos. O execution plan mostrava table scan em 3 tabelas. Criei índices compostos, reescrevi a procedure eliminando cursores e adicionei paginação server-side. Tempo final: 2 segundos. O banco dá as pistas — o trabalho é montar o caminho completo.</p><span class="note-link">Publicado</span></article>
+          <article class="note-card"><span class="note-type">IA · 03</span><h3 data-i18n="notes.three.title">Usar IA sem terceirizar o raciocínio</h3><p data-i18n="notes.three.text">Integrei GitHub Copilot e Claude no meu fluxo diário: geração de testes, review de PRs, documentação de APIs. O ganho real não é digitar menos — é ter um segundo olhar em cada decisão. Mas a responsabilidade pelo contexto, pela arquitetura e pelo código em produção continua sendo minha.</p><span class="note-link">Publicado</span></article>
         </div>
       </section>
 
       <section class="experience section-shell section-grid reveal" id="experiencia">
         <div class="section-heading"><p class="eyebrow">04 / <span data-i18n="experience.label">Experiência</span></p><h2 data-i18n="experience.title">Aprender, construir,<br /><em>evoluir.</em></h2></div>
         <div class="timeline">
-          <div class="timeline-item"><span class="timeline-date">03/2025 — 10/2025</span><div><h3 data-i18n="experience.basis">Basis Tecnologia — Engenheiro de Software</h3><p data-i18n="experience.basisText">Evolução de sistema corporativo C#/.NET com validação de regras junto a stakeholders. Tuning de queries e procedures SQL Server/Oracle com redução de até 70% no tempo de resposta de relatórios críticos. Revisão assistida por IA (GitHub Copilot) reduzindo ciclos de code review.</p></div></div>
-          <div class="timeline-item"><span class="timeline-date">02/2024 — 01/2025</span><div><h3 data-i18n="experience.g4f">G4F — Engenheiro Backend</h3><p data-i18n="experience.g4fText">Otimização de 30+ procedures e índices em rotinas de produção. Redução de MTTR de ~4h para menos de 1h com RCA e correções estruturais. Aplicação de Clean Code/SOLID em code reviews, reduzindo retrabalho em ~40%.</p></div></div>
-          <div class="timeline-item"><span class="timeline-date">09/2021 — 03/2023</span><div><h3 data-i18n="experience.gov">GovBr — Engenheiro de Software</h3><p data-i18n="experience.govText">Desenvolvimento de módulos em VB.NET/C# para sistema municipal atendendo milhares de cidadãos, integrando SQL Server e APIs Java. Melhoria na velocidade de entrega e estabilidade de serviços públicos.</p></div></div>
-          <div class="timeline-item"><span class="timeline-date">05/2018 — 09/2021</span><div><h3 data-i18n="experience.marcius">Marcius Magazine — Engenheiro de Software</h3><p data-i18n="experience.marciusText">ERP multi-filiais em .NET Core + PostgreSQL com integração a 3 marketplaces (Mercado Livre, B2W). Automação do fluxo de pedidos e estoque. Suíte de testes regressivos com Selenium viabilizando releases mais seguros.</p></div></div>
+          <div class="timeline-item"><span class="timeline-date">03/2025 — 10/2025</span><div><h3 data-i18n="experience.basis">Basis Tecnologia — Engenheiro de Software</h3><p data-i18n="experience.basisText">Assumi a evolução de um sistema corporativo C#/.NET com 50+ módulos. Reescrevi procedures e queries SQL Server/Oracle que reduziram em até 70% o tempo de relatórios críticos. Implementei revisão assistida por GitHub Copilot, acelerando ciclos de code review e detectando regressões antes de chegar em produção.</p></div></div>
+          <div class="timeline-item"><span class="timeline-date">02/2024 — 01/2025</span><div><h3 data-i18n="experience.g4f">G4F — Engenheiro Backend</h3><p data-i18n="experience.g4fText">Liderei a otimização de 30+ procedures e estratégias de indexação em ambiente com 200+ rotinas de produção. Conduzi análises de causa raiz (RCA) em incidentes P1/P2, reduzindo MTTR de ~4h para menos de 1h. Introduzi padrões Clean Code/SOLID em code reviews, cortando retrabalho em ~40%.</p></div></div>
+          <div class="timeline-item"><span class="timeline-date">09/2021 — 03/2023</span><div><h3 data-i18n="experience.gov">GovBr — Engenheiro de Software</h3><p data-i18n="experience.govText">Desenvolvi e mantive módulos em VB.NET/C# para sistema municipal que atendia milhares de cidadãos. Fui responsável pela integração entre SQL Server e APIs Java legadas, melhorando estabilidade e velocidade de entrega de serviços públicos.</p></div></div>
+          <div class="timeline-item"><span class="timeline-date">05/2018 — 09/2021</span><div><h3 data-i18n="experience.marcius">Marcius Magazine — Engenheiro de Software</h3><p data-i18n="experience.marciusText">Construí módulos de ERP multi-filiais em .NET Core + PostgreSQL e integrei 3 marketplaces (Mercado Livre, B2W). Automatizei o fluxo de pedidos e estoque, eliminando processos manuais. Implementei suíte de testes regressivos com Selenium que viabilizou releases semanais seguros.</p></div></div>
         </div>
       </section>
 
       <section class="skills section-shell reveal" id="competencias">
         <p class="eyebrow">05 / <span data-i18n="skills.label">Competências</span></p>
-        <div class="skill-cloud"><span>.NET</span><span>C#</span><span>ASP.NET Core</span><span>AWS</span><span>APIs REST</span><span>RabbitMQ</span><span>Redis</span><span>Hangfire</span><span>SQL Server</span><span>Oracle</span><span>PostgreSQL</span><span>Clean Code / SOLID</span><span>IA &amp; automação</span><span>Docker</span></div>
+        <div class="skill-groups">
+          <div class="skill-group"><h3 data-i18n="skills.expert">Domínio</h3><div class="skill-cloud"><span>C#</span><span>.NET / ASP.NET Core</span><span>APIs REST</span><span>SQL Server</span><span>Clean Code / SOLID</span></div></div>
+          <div class="skill-group"><h3 data-i18n="skills.proficient">Experiência sólida</h3><div class="skill-cloud"><span>AWS (EC2, S3, Lambda, RDS)</span><span>RabbitMQ</span><span>Redis</span><span>Hangfire</span><span>Oracle</span><span>PostgreSQL</span><span>Git</span></div></div>
+          <div class="skill-group"><h3 data-i18n="skills.working">Conhecimento aplicado</h3><div class="skill-cloud"><span>Docker</span><span>Claude API / GitHub Copilot</span><span>Angular</span><span>Selenium</span><span>Scrum / Kanban</span></div></div>
+        </div>
       </section>
 
       <section class="contact section-shell reveal" id="contato">
