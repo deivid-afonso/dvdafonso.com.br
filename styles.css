@@ -167,7 +167,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding-top: 74px;
   padding-bottom: 100px;
 }
-.eyebrow { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 25px; }
+.eyebrow { color: var(--accent-strong); font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 25px; }
 .status-dot { width: 7px; height: 7px; background: var(--accent); display: inline-block; border-radius: 50%; margin-right: 9px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 15%, transparent); }
 h1, h2, h3 { font-family: var(--display); margin-top: 0; line-height: 1.05; letter-spacing: -.06em; }
 h1 { font-size: clamp(48px, 7vw, 87px); max-width: 780px; margin-bottom: 29px; }
@@ -207,7 +207,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); margin-bottom: 0; }
 .project-card:hover { padding-left: 15px; padding-right: 15px; background: var(--surface); }
 .project-number { color: var(--muted); font: 500 13px var(--display); }
 .project-info { display: grid; grid-template-columns: 190px 1fr; align-items: center; gap: 20px; }
-.project-tag { color: var(--accent); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.project-tag { color: var(--accent-strong); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
 .project-info h3 { font-size: 24px; margin: 0; }
 .project-info p { color: var(--muted); font-size: 13px; margin: 0; }
 .project-arrow { color: var(--accent); font-size: 20px; }
@@ -217,13 +217,13 @@ h2 { font-size: clamp(36px, 4vw, 58px); margin-bottom: 0; }
 .note-card { min-height: 280px; padding: 25px; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; }
 .note-card:nth-child(2) { background: var(--surface-strong); }
 .note-card:nth-child(3) { background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
-.note-type { color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+.note-type { color: var(--accent-strong); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
 .note-card h3 { font-size: 24px; line-height: 1.08; margin: 42px 0 15px; }
 .note-card p { color: var(--muted); font-size: 14px; line-height: 1.5; margin: 0; }
 .note-link { color: var(--secondary); font-size: 12px; margin-top: auto; padding-top: 20px; }
 .timeline { padding-top: 10px; }
 .timeline-item { display: grid; grid-template-columns: 140px 1fr; gap: 30px; border-top: 1px solid var(--line); padding: 28px 0; }
-.timeline-date { color: var(--accent); font-size: 12px; font-weight: 700; }
+.timeline-date { color: var(--accent-strong); font-size: 12px; font-weight: 700; }
 .timeline h3 { font-size: 22px; margin-bottom: 10px; }
 .timeline p { margin: 0; max-width: 470px; }
 .skills { padding-top: 90px; padding-bottom: 110px; border-top: 1px solid var(--line); }
