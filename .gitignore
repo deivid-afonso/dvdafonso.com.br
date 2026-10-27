@@ -1,0 +1,14 @@
+# Local development
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Temporary and local environment files
+*.log
+.env
+.env.*
+!.env.example
+
+# Hostinger/local tooling
+*.zip
+*.bak
