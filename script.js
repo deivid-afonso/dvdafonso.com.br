@@ -76,48 +76,60 @@ document.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener
   menuToggle.setAttribute("aria-label", menuLabel(false));
 }));
 
-const themeButton = document.querySelector("[data-action='theme']");
-const fontDecreaseButton = document.querySelector("[data-action='font-decrease']");
-const fontIncreaseButton = document.querySelector("[data-action='font-increase']");
-const savedTheme = localStorage.getItem("theme");
-const savedFontScale = Number(localStorage.getItem("fontScale") || "1");
+const themeToggle = document.querySelector("#theme-toggle");
+const fontDown = document.querySelector("#font-down");
+const fontUp = document.querySelector("#font-up");
 
-const updateAccessibilityButton = (button, active, activeLabel, inactiveLabel) => {
-  button.setAttribute("aria-pressed", String(active));
-  button.setAttribute("aria-label", active ? activeLabel : inactiveLabel);
+const FONT_STEPS = [0.9, 1, 1.1, 1.2];
+const FONT_NAMES = ["small", "normal", "large", "large"];
+let fontIndex = 1;
+
+const applyTheme = (theme) => {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute("aria-label", theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro");
 };
 
-const setTheme = (light) => {
-  document.documentElement.dataset.theme = light ? "light" : "dark";
-  localStorage.setItem("theme", light ? "light" : "dark");
-  themeButton.dataset.theme = light ? "light" : "dark";
-  updateAccessibilityButton(themeButton, light, "Ativar tema escuro", "Ativar tema claro");
+const applyFontScale = () => {
+  document.documentElement.dataset.fontScale = FONT_NAMES[fontIndex];
+  document.documentElement.style.setProperty("--font-scale", String(FONT_STEPS[fontIndex]));
+  fontDown.disabled = fontIndex <= 0;
+  fontUp.disabled = fontIndex >= FONT_STEPS.length - 1;
+  fontDown.classList.toggle("is-active", fontIndex < 1);
+  fontUp.classList.toggle("is-active", fontIndex > 1);
+  try { localStorage.setItem("fontIndex", String(fontIndex)); } catch {}
 };
 
-const setFontScale = (scale) => {
-  const boundedScale = Math.min(1.2, Math.max(0.9, scale));
-  const scaleName = boundedScale > 1 ? "large" : boundedScale < 1 ? "small" : "normal";
-  document.documentElement.dataset.fontScale = scaleName;
-  document.documentElement.style.setProperty("--font-scale", String(boundedScale));
-  localStorage.setItem("fontScale", String(boundedScale));
-  fontDecreaseButton.disabled = boundedScale <= 0.9;
-  fontIncreaseButton.disabled = boundedScale >= 1.2;
-};
+const savedTheme = (() => { try { return localStorage.getItem("theme"); } catch { return null; } })();
+const savedFontIndex = (() => { try { const v = localStorage.getItem("fontIndex"); return v === null ? NaN : Number(v); } catch { return NaN; } })();
 
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 if (savedTheme) {
-  setTheme(savedTheme === "light");
+  applyTheme(savedTheme);
 } else {
-  setTheme(!prefersDark.matches);
+  applyTheme(window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
 }
-prefersDark.addEventListener("change", (e) => {
-  if (!localStorage.getItem("theme")) setTheme(!e.matches);
+
+if (Number.isFinite(savedFontIndex) && savedFontIndex >= 0 && savedFontIndex < FONT_STEPS.length) {
+  fontIndex = savedFontIndex;
+}
+applyFontScale();
+
+themeToggle.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(next);
+  try { localStorage.setItem("theme", next); } catch {}
 });
 
-setFontScale(Number.isFinite(savedFontScale) ? savedFontScale : 1);
-themeButton.addEventListener("click", () => setTheme(document.documentElement.dataset.theme !== "light"));
-fontDecreaseButton.addEventListener("click", () => setFontScale(Number(document.documentElement.style.getPropertyValue("--font-scale")) - 0.1));
-fontIncreaseButton.addEventListener("click", () => setFontScale(Number(document.documentElement.style.getPropertyValue("--font-scale")) + 0.1));
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  if (!savedTheme) applyTheme(e.matches ? "dark" : "light");
+});
+
+fontDown.addEventListener("click", () => {
+  if (fontIndex > 0) { fontIndex--; applyFontScale(); }
+});
+
+fontUp.addEventListener("click", () => {
+  if (fontIndex < FONT_STEPS.length - 1) { fontIndex++; applyFontScale(); }
+});
 
 fetch("csrf-token.php", { credentials: "same-origin" })
   .then((r) => r.json())
@@ -133,7 +145,7 @@ document.querySelector("#contact-form").addEventListener("submit", (event) => {
   status.className = "form-status";
   status.textContent = english ? "Sending..." : "Enviando...";
   submit.disabled = true;
-  fetch(form.action, { method: "POST", body: formData, headers: { Accept: "application/json" } })
+  fetch(form.action, { method: "POST", body: formData, credentials: "same-origin", headers: { Accept: "application/json" } })
     .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
     .then(({ ok, data }) => {
       if (!ok) throw new Error(data.message || "contact_failed");
