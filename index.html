@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -78,9 +78,16 @@
         <button class="language-switch" type="button" aria-label="Mudar idioma">EN</button>
       </nav>
       <div class="accessibility-tools" role="group" aria-label="Acessibilidade">
-        <button class="accessibility-button" type="button" data-action="theme" aria-pressed="false" aria-label="Ativar tema claro" title="Tema claro">☼</button>
-        <button class="accessibility-button" type="button" data-action="font-decrease" aria-label="Diminuir tamanho do texto" title="Diminuir texto">A−</button>
-        <button class="accessibility-button" type="button" data-action="font-increase" aria-label="Aumentar tamanho do texto" title="Aumentar texto">A+</button>
+        <button class="accessibility-button" type="button" data-action="theme" aria-pressed="false" aria-label="Ativar tema claro" title="Tema claro">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"></path></svg>
+        </button>
+        <button class="accessibility-button" type="button" data-action="font-decrease" aria-label="Diminuir tamanho do texto" title="Diminuir texto">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M5 16h14"></path><path d="M8 3 5 21M16 3l3 18"></path></svg>
+        </button>
+        <button class="accessibility-button" type="button" data-action="font-increase" aria-label="Aumentar tamanho do texto" title="Aumentar texto">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M5 16h14M12 5v14"></path><path d="M8 3 5 21M16 3l3 18"></path></svg>
+        </button>
       </div>
     </header>
 
@@ -188,6 +195,6 @@
       </section>
     </main>
     <footer class="site-footer section-shell"><span>© <span id="year"></span> Deivid Afonso</span><span data-i18n="footer">Feito com intenção e código.</span><a href="#inicio">Voltar ao topo ↑</a></footer>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
   </body>
 </html>

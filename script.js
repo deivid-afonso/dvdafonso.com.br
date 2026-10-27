@@ -54,6 +54,7 @@ const updateAccessibilityButton = (button, active, activeLabel, inactiveLabel) =
 const setTheme = (light) => {
   document.documentElement.dataset.theme = light ? "light" : "dark";
   localStorage.setItem("theme", light ? "light" : "dark");
+  themeButton.dataset.theme = light ? "light" : "dark";
   updateAccessibilityButton(themeButton, light, "Ativar tema escuro", "Ativar tema claro");
 };
 
