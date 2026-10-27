@@ -30,3 +30,14 @@ jobs:
 
       - name: Validate PHP syntax
         run: php -l contact.php
+
+      - name: Validate HTML structure
+        uses: Cyb3r-Jak3/html5validator@v0.6.2
+        with:
+          root: .
+          blacklist: sitemap.xml
+
+      - name: Check for accidental secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

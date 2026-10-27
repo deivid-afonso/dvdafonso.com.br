@@ -17,6 +17,28 @@ Site pessoal de Deivid Afonso, desenvolvido como uma página estática responsiv
 
 O GitHub funciona como repositório e histórico do projeto. A execução do PHP acontece na Hostinger, não no GitHub Pages.
 
+## CI/CD e segurança
+
+Cada push ou pull request para `main` executa:
+
+- sintaxe JavaScript;
+- sintaxe PHP;
+- validação HTML;
+- detecção de segredos;
+- análise CodeQL do JavaScript.
+
+O deploy automático está em `.github/workflows/deploy.yml` e usa FTPS com secrets do GitHub. Ele só é ativado quando a variável de repositório `HOSTINGER_DEPLOY_ENABLED` vale `true`.
+
+Configure estes secrets no repositório:
+
+```text
+HOSTINGER_FTP_SERVER
+HOSTINGER_FTP_USERNAME
+HOSTINGER_FTP_PASSWORD
+```
+
+O servidor FTP, usuário e diretório exatos devem ser copiados do hPanel da Hostinger. Nunca coloque esses valores em arquivos ou no histórico Git.
+
 ## Publicação na Hostinger
 
 1. Faça o upload de `index.html`, `styles.css` e `script.js` para a pasta `public_html`.
