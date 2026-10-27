@@ -4,7 +4,7 @@ test("homepage presents the professional profile and core navigation", async ({ 
   await page.goto("/");
 
   await expect(page).toHaveTitle("Deivid Afonso | Engenheiro Backend .NET C# AWS — São Paulo, SP");
-  await expect(page.locator("h1")).toContainText("Tecnologia, projetos e ideias");
+  await expect(page.locator("h1")).toContainText("Sistemas backend que");
   await expect(page.locator("body")).toContainText("Engenheiro Backend Sênior");
   await expect(page.locator("body")).toContainText("Basis Tecnologia");
 
