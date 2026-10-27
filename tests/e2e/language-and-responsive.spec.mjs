@@ -27,12 +27,16 @@ test("mobile navigation opens and exposes the contact route", async ({ page }) =
   await expect(page.locator("#contato")).toBeInViewport();
 });
 test("accessibility controls switch theme and text size", async ({ page }) => {
+  await page.addInitScript(() => localStorage.clear());
   await page.goto("/");
 
   const themeButton = page.locator("[data-action='theme']");
   const decreaseButton = page.locator("[data-action='font-decrease']");
   const increaseButton = page.locator("[data-action='font-increase']");
 
+  await expect(themeButton.locator(".icon")).toHaveCount(2);
+  await expect(decreaseButton.locator(".icon")).toBeVisible();
+  await expect(increaseButton.locator(".icon")).toBeVisible();
   await themeButton.click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await expect(themeButton).toHaveAttribute("aria-pressed", "true");
@@ -40,8 +44,10 @@ test("accessibility controls switch theme and text size", async ({ page }) => {
   await increaseButton.click();
   await expect(page.locator("html")).toHaveAttribute("data-font-scale", "large");
   await expect(increaseButton).toBeEnabled();
+  const largeTextSize = await page.locator(".hero-text").evaluate((element) => getComputedStyle(element).fontSize);
 
   await decreaseButton.click();
   await expect(page.locator("html")).toHaveAttribute("data-font-scale", "normal");
   await expect(decreaseButton).toBeEnabled();
+  await expect(page.locator(".hero-text")).not.toHaveCSS("font-size", largeTextSize);
 });
