@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Como reduzi um relatório de 45 segundos para 2 segundos com índices compostos, eliminação de cursores e paginação server-side no SQL Server." />
+    <meta name="author" content="Deivid Afonso" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://dvdafonso.com.br/notas/banco-conta-parte-da-historia.html" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="O banco quase sempre conta uma parte da história — Deivid Afonso" />
+    <meta property="og:description" content="Relatório crítico de 45s para 2s: índices compostos, procedure sem cursores e paginação server-side no SQL Server." />
+    <meta property="og:url" content="https://dvdafonso.com.br/notas/banco-conta-parte-da-historia.html" />
+    <meta property="og:image" content="https://dvdafonso.com.br/og-image.png" />
+    <title>O banco quase sempre conta uma parte da história — Deivid Afonso</title>
+    <link rel="preload" href="../fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=10" />
+    <link rel="stylesheet" href="note.css?v=1" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "O banco quase sempre conta uma parte da história",
+        "author": { "@type": "Person", "name": "Deivid Afonso", "url": "https://dvdafonso.com.br/" },
+        "datePublished": "2025-10-01",
+        "description": "Como reduzi um relatório de 45 segundos para 2 segundos com índices compostos, eliminação de cursores e paginação server-side.",
+        "mainEntityOfPage": "https://dvdafonso.com.br/notas/banco-conta-parte-da-historia.html"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="note-header section-shell">
+      <a href="../#notas" class="back-link">← Voltar às notas</a>
+    </header>
+    <article class="note-article section-shell">
+      <p class="note-meta">PERFORMANCE · Publicado em out/2025</p>
+      <h1>O banco quase sempre conta uma parte da história</h1>
+
+      <p class="lead">Um relatório crítico levava 45 segundos. O execution plan mostrava table scan em 3 tabelas. O banco dava as pistas — o trabalho era montar o caminho completo.</p>
+
+      <h2>O cenário</h2>
+      <p>O relatório era usado pelo financeiro todos os dias, primeira hora. Cruzava dados de 3 tabelas com 500k+ registros cada. Com o crescimento de dados, o tempo subiu de "aceitável" para 45 segundos — o suficiente para o usuário achar que o sistema travou.</p>
+
+      <h2>A investigação</h2>
+      <p>O primeiro passo foi olhar o execution plan. Table scans nas 3 tabelas principais, nested loops onde deveria haver hash joins, e uma procedure cheia de cursores processando linha por linha o que poderia ser uma operação de conjunto.</p>
+      <p>O problema não era um — eram três camadas:</p>
+      <ol>
+        <li><strong>Índices ausentes</strong> — as colunas de JOIN e WHERE não tinham índices compostos</li>
+        <li><strong>Cursores</strong> — processamento row-by-row em vez de set-based</li>
+        <li><strong>Sem paginação</strong> — o relatório carregava todos os registros de uma vez, mesmo que o usuário visse apenas 50 por página</li>
+      </ol>
+
+      <h2>A solução</h2>
+      <p>Criei índices compostos cobrindo as colunas de JOIN + filtro mais frequentes. Reescrevi a procedure inteira: eliminei os cursores, substituí por CTEs e operações de conjunto. Adicionei paginação server-side com <code>OFFSET/FETCH</code> para entregar apenas a página solicitada.</p>
+
+      <h2>O resultado</h2>
+      <p>Tempo final: 2 segundos. A diferença não veio de uma única mudança, mas da combinação. O índice sozinho já teria ajudado, mas sem eliminar os cursores e sem paginar, o ganho seria parcial.</p>
+
+      <h2>O aprendizado</h2>
+      <p>O execution plan diz onde dói, mas não diz tudo. Ele mostra que tem table scan, mas não mostra que a procedure está iterando linha por linha. Otimizar banco é seguir pistas em camadas — e cada camada que você resolve revela a próxima.</p>
+    </article>
+    <footer class="note-footer section-shell">
+      <a href="../#notas">← Todas as notas</a>
+      <a href="../#contato">Falar comigo ↗</a>
+    </footer>
+  </body>
+</html>
