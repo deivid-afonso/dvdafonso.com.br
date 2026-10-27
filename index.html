@@ -156,7 +156,7 @@
           <div class="hero-actions">
             <a class="button button-primary" href="#contato" data-i18n="hero.cta">Vamos conversar <span>↗</span></a>
             <a class="button button-ghost" href="https://github.com/deivid-afonso" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
-            <a class="button button-ghost" href="cv-deivid-afonso.pdf" download data-i18n="hero.cv">Baixar CV <span>↓</span></a>
+            <a class="button button-ghost" href="cv-deivid-afonso.pdf" download id="cv-link" data-i18n="hero.cv">Baixar CV <span>↓</span></a>
           </div>
           <div class="hero-meta">
             <span>Diadema, SP — Grande São Paulo</span><span class="meta-separator">•</span><span data-i18n="hero.meta">7+ anos construindo software</span>
@@ -235,9 +235,18 @@
         </div>
       </section>
 
+      <section class="education section-shell reveal" id="formacao">
+        <p class="eyebrow">06 / <span data-i18n="education.label">Formação</span></p>
+        <div class="timeline">
+          <div class="timeline-item"><span class="timeline-date" data-i18n="education.archDate">2024</span><div><h3 data-i18n="education.arch">Pós-graduação — Arquitetura de Software .NET</h3><p data-i18n="education.archSchool">Anhanguera</p></div></div>
+          <div class="timeline-item"><span class="timeline-date" data-i18n="education.dsmDate">Em andamento</span><div><h3 data-i18n="education.dsm">Tecnólogo — Desenvolvimento de Sistemas Multiplataforma</h3><p data-i18n="education.dsmSchool">Fatec Diadema — 3º semestre · Previsão: 2028</p></div></div>
+          <div class="timeline-item"><span class="timeline-date" data-i18n="education.webDate">2020</span><div><h3 data-i18n="education.web">Tecnólogo — Sistemas para Internet</h3><p data-i18n="education.webSchool">Fatec Jahu</p></div></div>
+        </div>
+      </section>
+
       <section class="contact section-shell reveal" id="contato">
         <div class="contact-card">
-          <div><p class="eyebrow">06 / <span data-i18n="contact.label">Contato</span></p><h2 data-i18n="contact.title">Tem uma ideia?<br /><em>Vamos tirar do papel.</em></h2><p data-i18n="contact.text">Se você quer conversar sobre tecnologia, um projeto ou uma oportunidade, me escreva.</p></div>
+          <div><p class="eyebrow">07 / <span data-i18n="contact.label">Contato</span></p><h2 data-i18n="contact.title">Tem uma ideia?<br /><em>Vamos tirar do papel.</em></h2><p data-i18n="contact.text">Se você quer conversar sobre tecnologia, um projeto ou uma oportunidade, me escreva.</p></div>
           <div class="contact-actions">
             <form class="contact-form" id="contact-form" action="contact.php" method="post">
               <input class="form-trap" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
