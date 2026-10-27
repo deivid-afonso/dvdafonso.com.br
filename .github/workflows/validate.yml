@@ -32,7 +32,7 @@ jobs:
         run: php -l contact.php
 
       - name: Validate HTML structure
-        uses: Cyb3r-Jak3/html5validator@v0.6.2
+        uses: Cyb3r-Jak3/html5validator@v1.1.5
         with:
           root: .
           blacklist: sitemap.xml
