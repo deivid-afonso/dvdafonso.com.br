@@ -1,14 +1,14 @@
 const translations = {
   en: {
     "nav.about": "About", "nav.projects": "Projects", "nav.notes": "Notes", "nav.experience": "Experience", "nav.contact": "Contact",
-    "hero.eyebrow": "Available for good connections", "hero.title": "Technology, projects and ideas <em>in motion.</em>",
+    "hero.eyebrow": "Available for remote work — full-time or contract", "hero.title": "Technology, projects and ideas <em>in motion.</em>",
     "hero.text": "I am Deivid Afonso, a Senior Backend Engineer specialized in .NET, C# and AWS. I build robust systems and solutions that help people.",
     "hero.cta": "Let's talk", "hero.meta": "7+ years building software", "about.label": "About me",
     "about.title": "Engineering with purpose,<br /><em>people at the center.</em>", "about.lead": "Software engineering with technical depth and attention to the impact every solution creates.",
     "about.body": "I build high-performance corporate systems with C#/.NET, REST APIs, messaging, caching, relational databases and AWS. I also integrate AI tools into the development cycle to accelerate delivery and eliminate manual work. As an autistic person with ADHD, I bring a neurodivergent perspective to create with more empathy, clarity and intention.",
     "projects.label": "Featured projects", "projects.title": "Ideas that became<br /><em>code and shape.</em>", "projects.all": "See all on GitHub ↗",
     "projects.console": "Full stack project exploring Web API, Angular and Entity Framework Core.", "projects.events": "Full stack application built with ASP.NET Core for event management.", "projects.git": "A project dedicated to sharing practical knowledge about Git.",
-    "notes.label": "Workbench notes", "notes.title": "What I am<br /><em>investigating.</em>", "notes.aside": "Short learnings, real decisions.", "notes.one.title": "When a queue solves more than a retry", "notes.one.text": "Not every integration problem is solved by increasing the timeout. Some answers appear when we accept time.", "notes.two.title": "The database usually tells only part of the story", "notes.two.text": "Queries, indexes and logs are clues. The work is tracing the full path until the user feels the difference.", "notes.three.title": "Using AI without outsourcing your thinking", "notes.three.text": "Copilots speed up typing. Responsibility for the decision, context and code is still ours.",
+    "notes.label": "Workbench notes", "notes.title": "What I am<br /><em>investigating.</em>", "notes.aside": "Short learnings, real decisions.", "notes.one.title": "When a queue solves more than a retry", "notes.one.text": "An integration failed 3 times a day with synchronous retries and growing timeouts. I replaced it with a RabbitMQ queue and dead-letter: processing became async, failures became traceable, and API response time dropped from 12s to 200ms. Not every integration problem needs more retries — sometimes it needs decoupling.", "notes.two.title": "The database usually tells only part of the story", "notes.two.text": "Queries, indexes and logs are clues. The work is tracing the full path until the user feels the difference.", "notes.three.title": "Using AI without outsourcing your thinking", "notes.three.text": "Copilots speed up typing. Responsibility for the decision, context and code is still ours.",
     "experience.label": "Experience", "experience.title": "Learn, build,<br /><em>evolve.</em>", "experience.basis": "Basis Tecnologia — Software Engineer", "experience.basisText": "Corporate systems evolution in C#/.NET, SQL Server/Oracle query and procedure tuning, and GitHub Copilot-assisted reviews.", "experience.g4f": "G4F — Backend Engineer", "experience.g4fText": "Production routine optimization, root cause analysis, MTTR reduction and Clean Code/SOLID in code reviews.", "experience.gov": "GovBr — Software Engineer", "experience.govText": "VB.NET/C# module development for a high-impact municipal system, integrating SQL Server and Java APIs.", "experience.marcius": "Marcius Magazine — Software Engineer", "experience.marciusText": "ERP modules with .NET Core and PostgreSQL, marketplace integrations and regression testing with Selenium.",
     "skills.label": "Skills", "contact.label": "Contact", "contact.title": "Have an idea?<br /><em>Let's bring it to life.</em>", "contact.text": "If you want to talk about technology, a project or an opportunity, send me a message.", "contact.name": "Your name", "contact.email": "Your e-mail", "contact.message": "How can I help?", "contact.send": "Send message", "footer": "Made with intention and code."
   }
@@ -38,7 +38,7 @@ languageButton.addEventListener("click", () => {
       element.textContent = content;
     }
   });
-  document.title = english ? "Deivid Afonso | Technology, projects and ideas" : "Deivid Afonso | Tecnologia, projetos e ideias";
+  document.title = english ? "Deivid Afonso | Backend Engineer .NET C# AWS — São Paulo, Brazil" : "Deivid Afonso | Engenheiro Backend .NET C# AWS — São Paulo, SP";
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
