@@ -33,6 +33,12 @@ jobs:
       - name: Validate PHP syntax
         run: php -l contact.php
 
+      - name: Install browser test dependencies
+        run: npm ci && npx playwright install --with-deps chromium
+
+      - name: Run browser end-to-end tests
+        run: npm test
+
       - name: Validate HTML structure
         run: npx --yes html-validate@9.4.0 --config .htmlvalidate.json index.html
 
