@@ -21,7 +21,7 @@ test("SEO metadata and structured profile are exposed", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://dvdafonso.com.br/");
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Engenheiro Backend Sênior/);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Engenheiro Fullstack/);
   const structuredProfile = await page.locator('script[type="application/ld+json"]').first().textContent();
   expect(structuredProfile).toContain("Deivid Afonso");
   expect(structuredProfile).toContain("https://github.com/deivid-afonso");

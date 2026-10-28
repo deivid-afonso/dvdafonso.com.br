@@ -1,11 +1,11 @@
 const translations = {
   en: {
     "nav.about": "About", "nav.projects": "Projects", "nav.notes": "Notes", "nav.experience": "Experience", "nav.contact": "Contact",
-    "hero.eyebrow": "Available since Oct/2025 — remote, full-time or contract", "hero.title": "Backend systems that <em>scale and deliver.</em>",
-    "hero.text": "I am Deivid Afonso, a Senior Backend Engineer specialized in .NET, C# and AWS. I build robust systems and solutions that help people.",
+    "hero.eyebrow": "Fullstack with backend emphasis — remote, full-time or contract", "hero.title": "Backend systems that <em>scale and deliver.</em>",
+    "hero.text": "I am Deivid Afonso, a Fullstack Engineer focused on backend — .NET, C# and AWS on the server, Angular and React on the frontend. I build robust end-to-end systems.",
     "hero.cta": "Let's talk", "hero.cv": "Download CV", "hero.meta": "7+ years building software", "about.label": "About me",
     "about.title": "Backend that solves,<br /><em>not just compiles.</em>", "about.lead": "Software engineering with technical depth and attention to the impact every solution creates.",
-    "about.body": "I build high-performance corporate systems with C#/.NET, REST APIs, messaging, caching, relational databases and AWS. I also integrate AI tools into the development cycle to accelerate delivery and eliminate manual work. As an autistic person with ADHD, I bring a neurodivergent perspective to create with more empathy, clarity and intention.",
+    "about.body": "I build high-performance corporate systems with C#/.NET, REST APIs, messaging, caching, relational databases and AWS — and also deliver on the frontend with Angular and React. I integrate AI tools into the development cycle to accelerate delivery and eliminate manual work. As an autistic person with ADHD, I bring a neurodivergent perspective to create with more empathy, clarity and intention.",
     "projects.label": "Featured projects", "projects.title": "Ideas that became<br /><em>code and shape.</em>", "projects.all": "See all on GitHub ↗",
     "projects.trade": "REST API with Repository Pattern, dependency injection and Entity Framework Core. Layered architecture with Services, Repository and Controllers separation.", "projects.nutrimente": "Platform with 5 Docker containers: Spring Boot API (Java), Next.js frontend, SQL Server, MongoDB for logs and Node.js audit service. Playwright E2E tests, healthchecks and JWT.", "projects.portfolio": "This site: CI/CD with GitHub Actions, FTPS deploy, authenticated SMTP, CSRF protection, E2E tests, Lighthouse CI and Cloudflare CDN. Accessibility score 100.",
     "notes.label": "Workbench notes", "notes.title": "What I am<br /><em>investigating.</em>", "notes.aside": "Short learnings, real decisions.", "notes.one.title": "When a queue solves more than a retry", "notes.one.text": "An integration failed 3 times a day with synchronous retries and growing timeouts. I replaced it with a RabbitMQ queue and dead-letter: processing became async, failures became traceable, and API response time dropped from 12s to 200ms. Not every integration problem needs more retries — sometimes it needs decoupling.", "notes.two.title": "The database usually tells only part of the story", "notes.two.text": "A critical report took 45 seconds. The execution plan showed table scans on 3 tables. I created composite indexes, rewrote the procedure eliminating cursors and added server-side pagination. Final time: 2 seconds. The database gives the clues — the work is tracing the full path.", "notes.three.title": "Using AI without outsourcing your thinking", "notes.three.text": "I integrated GitHub Copilot and Claude into my daily workflow: test generation, PR reviews, API documentation. The real gain isn't typing less — it's having a second pair of eyes on every decision. But the responsibility for context, architecture and production code is still mine.",
@@ -41,7 +41,7 @@ languageButton.addEventListener("click", () => {
       element.textContent = content;
     }
   });
-  document.title = english ? "Deivid Afonso | Backend Engineer .NET C# AWS — São Paulo, Brazil" : "Deivid Afonso | Engenheiro Backend .NET C# AWS — São Paulo, SP";
+  document.title = english ? "Deivid Afonso | Fullstack Engineer .NET C# AWS — São Paulo, Brazil" : "Deivid Afonso | Engenheiro Fullstack .NET C# AWS — São Paulo, SP";
   const cvLink = document.querySelector("#cv-link");
   if (cvLink) cvLink.href = english ? "cv-deivid-afonso-en.pdf" : "cv-deivid-afonso.pdf";
 });

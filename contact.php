@@ -65,7 +65,7 @@ if (!$sentToOwner) {
 }
 
 $replySubject = 'Recebi sua mensagem — Deivid Afonso';
-$reply = "Olá, {$safeName}!\n\nObrigado por escrever pelo meu site. Recebi sua mensagem e vou analisá-la com atenção. Retornarei assim que possível pelo e-mail informado.\n\nEnquanto isso, você também pode me encontrar no LinkedIn:\nhttps://www.linkedin.com/in/deivid-da-silva-afonso-dev/\n\nAbraços,\nDeivid Afonso\nEngenheiro Backend Sênior";
+$reply = "Olá, {$safeName}!\n\nObrigado por escrever pelo meu site. Recebi sua mensagem e vou analisá-la com atenção. Retornarei assim que possível pelo e-mail informado.\n\nEnquanto isso, você também pode me encontrar no LinkedIn:\nhttps://www.linkedin.com/in/deivid-da-silva-afonso-dev/\n\nAbraços,\nDeivid Afonso\nEngenheiro Fullstack";
 smtp_send($safeEmail, $replySubject, $reply, 'contato@dvdafonso.com.br', 'Deivid Afonso');
 
 // Rotate CSRF token after successful submission
