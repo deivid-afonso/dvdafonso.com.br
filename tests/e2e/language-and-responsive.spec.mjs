@@ -5,12 +5,12 @@ test("language switch changes content and restores Portuguese", async ({ page })
   const languageButton = page.locator(".language-switch");
 
   await languageButton.click();
-  await expect(page).toHaveTitle("Deivid Afonso | Backend Engineer .NET C# AWS — São Paulo, Brazil");
+  await expect(page).toHaveTitle("Deivid Afonso | Fullstack Engineer .NET C# AWS — São Paulo, Brazil");
   await expect(page.locator("h1")).toContainText("Backend systems that");
   await expect(page.locator(".site-nav").getByRole("link", { name: "About", exact: true })).toBeVisible();
 
   await languageButton.click();
-  await expect(page).toHaveTitle("Deivid Afonso | Engenheiro Backend .NET C# AWS — São Paulo, SP");
+  await expect(page).toHaveTitle("Deivid Afonso | Engenheiro Fullstack .NET C# AWS — São Paulo, SP");
   await expect(page.locator("h1")).toContainText("Sistemas backend que");
 });
 
